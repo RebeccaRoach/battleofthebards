@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Poem, Question, Clue
+admin.site.register(Poem)
+admin.site.register(Question)
+admin.site.register(Clue)
