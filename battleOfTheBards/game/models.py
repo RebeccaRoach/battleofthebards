@@ -36,7 +36,7 @@ class Question(models.Model):
 
 # Clue
 class Clue(models.Model):
-  question = models.ForeignKey(Question, on_delete=models.CASCADE)
+  question = models.ForeignKey(Question, related_name='clues', on_delete=models.CASCADE)
   text = models.CharField(max_length=1000)
 
   def __str__(self):
