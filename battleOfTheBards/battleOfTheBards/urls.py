@@ -20,3 +20,7 @@ urlpatterns = [
     path('game/', include('game.urls')),
     path('admin/', admin.site.urls),
 ]
+
+admin.site.site_header = 'Battle of the Bards'
+admin.site.index_title = 'Admin Dashboard'
+admin.site.site_title = 'BotB Admin Site'
