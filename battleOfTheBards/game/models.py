@@ -1,5 +1,4 @@
 from django.db import models
-import json
 from django.contrib.postgres.fields import ArrayField
 
 # TODO: Validations/ Permissions?
@@ -20,19 +19,28 @@ class Poem(models.Model):
   year = models.CharField(max_length=4)
   text = models.TextField()
 
+  def __str__(self):
+    return self.author + " - '" + self.title + "'"
+
 # Question
 class Question(models.Model):
-  poem = models.ForeignKey(Poem, on_delete=models.CASCADE)
+  poem = models.ForeignKey(Poem, related_name='questions', on_delete=models.CASCADE)
   text = models.CharField(max_length=1000)
   score = models.IntegerField(default=0)
   answers = ArrayField(
     models.CharField(max_length=1000)
   )
 
+  def __str__(self):
+    return str(self.score) + " points - " + self.text
+
 # Clue
 class Clue(models.Model):
   question = models.ForeignKey(Question, on_delete=models.CASCADE)
   text = models.CharField(max_length=1000)
+
+  def __str__(self):
+    return "(" + str(self.question) + ") " + self.text
   
  # each model gets own endpoint, but most work on frontend
  #  API returns ids (poem 7 returns questions as list of IDs)
