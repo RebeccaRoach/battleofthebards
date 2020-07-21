@@ -1,1 +1,1 @@
-web: gunicorn battleOfTheBards.wsgi --log-file -
+web: gunicorn battleOfTheBards.wsgi:application --log-file -
